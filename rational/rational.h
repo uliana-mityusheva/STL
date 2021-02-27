@@ -14,8 +14,8 @@ public:
 
 class Rational {
 private:
-    int numerator; //числитель
-    int denominator; //знаменатель
+    int numerator;
+    int denominator;
 
     void Reduce();
 public:
@@ -28,13 +28,13 @@ public:
     void SetNumerator(int num);
     void SetDenominator(int num);
 
-    friend std::istream& operator >> (std::istream& is, Rational &num);
-    friend std::ostream& operator << (std::ostream& out, Rational &num);
+    friend std::istream& operator>>(std::istream &is, Rational &num);
+    friend std::ostream& operator<<(std::ostream &out, Rational &num);
 
-    Rational& operator += (Rational add);
-    Rational& operator -= (Rational add);
-    Rational& operator *= (Rational add);
-    Rational& operator /= (Rational add);
+    Rational &operator+=(Rational add);
+    Rational &operator-=(Rational add);
+    Rational &operator*=(Rational add);
+    Rational &operator/=(Rational add);
 
     friend bool operator>(Rational &first, Rational &second);
 };
@@ -47,8 +47,8 @@ Rational operator/(Rational first, Rational second);
 Rational operator+(Rational num);
 Rational operator-(Rational num);
 
-Rational& operator++(Rational &num);
-Rational& operator--(Rational &num);
+Rational &operator++(Rational &num);
+Rational &operator--(Rational &num);
 Rational operator++(Rational &num, int);
 Rational operator--(Rational &num, int);
 

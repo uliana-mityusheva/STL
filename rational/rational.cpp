@@ -68,7 +68,7 @@ void Rational::SetDenominator(int num) {
     Reduce();
 }
 
-std::istream& operator >> (std::istream& is, Rational &num) {
+std::istream &operator>>(std::istream& is, Rational &num) {
     const int MaxStringSize = 32;
     char str[MaxStringSize];
     is >> str;
@@ -84,7 +84,7 @@ std::istream& operator >> (std::istream& is, Rational &num) {
     return is;
 }
 
-std::ostream& operator << (std::ostream& out, Rational &num) {
+std::ostream &operator<<(std::ostream& out, Rational &num) {
     if (num.denominator != 1) {
         out << num.numerator << "/" << num.denominator;
     } else {
@@ -93,27 +93,27 @@ std::ostream& operator << (std::ostream& out, Rational &num) {
     return out;
 }
 
-Rational& Rational::operator+=(Rational add) {
+Rational &Rational::operator+=(Rational add) {
     this->numerator = (add.numerator * this->denominator + this->numerator * add.denominator) / Gcd(this->denominator, add.denominator);
     this->denominator = Lcm(this->denominator, add.denominator);
     this->Reduce();
     return *this;
 }
 
-Rational& Rational::operator-=(Rational add) {
+Rational &Rational::operator-=(Rational add) {
     add.numerator *= -1;
     *this += add;
     return *this;
 }
 
-Rational& Rational::operator*=(Rational add) {
+Rational &Rational::operator*=(Rational add) {
     this->numerator = this->numerator * add.numerator;
     this->denominator = this->denominator * add.denominator;
     this->Reduce();
     return *this;
 }
 
-Rational& Rational::operator/=(Rational add) {
+Rational &Rational::operator/=(Rational add) {
     std::swap(add.numerator, add.denominator);
     *this *= add;
     return *this;
@@ -148,12 +148,12 @@ Rational operator-(Rational num) {
     return num;
 }
 
-Rational& operator++(Rational &num) {
+Rational &operator++(Rational &num) {
     num += 1;
     return num;
 }
 
-Rational& operator--(Rational &num) {
+Rational &operator--(Rational &num) {
     num -= 1;
     return num;
 }
