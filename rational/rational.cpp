@@ -23,7 +23,7 @@ int Gcd(int first, int second) {
 }
 
 int Lcm(int first, int second) {
-    return (first * second) / Gcd (first, second);
+    return (first * second) / Gcd(first, second);
 }
 
 void Rational::Reduce() {
@@ -31,7 +31,7 @@ void Rational::Reduce() {
         throw RationalDivisionByZero{};
     }
 
-    int gcd = Gcd(numerator, denominator); //написать
+    int gcd = Gcd(numerator, denominator);
     if (denominator < 0) {
         numerator *= -1;
         denominator *= -1;
@@ -40,9 +40,13 @@ void Rational::Reduce() {
     denominator /= gcd;
 }
 
-Rational::Rational() : numerator(0), denominator(1) {}
+Rational::Rational() : numerator(0), denominator(1) {
 
-Rational::Rational(int x) : numerator(x), denominator(1) {}
+}
+
+Rational::Rational(int x) : numerator(x), denominator(1) {
+
+}
 
 Rational::Rational(int x, int y) {
     numerator = x;
@@ -68,12 +72,12 @@ void Rational::SetDenominator(int num) {
     Reduce();
 }
 
-std::istream &operator>>(std::istream& is, Rational &num) {
+std::istream &operator>>(std::istream &is, Rational &num) {
     const int MaxStringSize = 32;
     char str[MaxStringSize];
     is >> str;
-    char* end_ptr;
-    num.numerator = strtol(str, &end_ptr, 10); //stroll
+    char *end_ptr;
+    num.numerator = strtol(str, &end_ptr, 10);
     if (*end_ptr != 0) {
         ++end_ptr;
         num.denominator = strtol(end_ptr, &end_ptr, 10);
@@ -84,7 +88,7 @@ std::istream &operator>>(std::istream& is, Rational &num) {
     return is;
 }
 
-std::ostream &operator<<(std::ostream& out, Rational &num) {
+std::ostream &operator<<(std::ostream &out, Rational &num) {
     if (num.denominator != 1) {
         out << num.numerator << "/" << num.denominator;
     } else {
@@ -94,7 +98,8 @@ std::ostream &operator<<(std::ostream& out, Rational &num) {
 }
 
 Rational &Rational::operator+=(Rational add) {
-    this->numerator = (add.numerator * this->denominator + this->numerator * add.denominator) / Gcd(this->denominator, add.denominator);
+    this->numerator = (add.numerator * this->denominator + this->numerator * add.denominator) /
+            Gcd(this->denominator, add.denominator);
     this->denominator = Lcm(this->denominator, add.denominator);
     this->Reduce();
     return *this;
