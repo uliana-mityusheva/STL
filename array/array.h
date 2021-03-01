@@ -15,21 +15,21 @@ class Array {
 public:
     T arr[N];
 
-    T& At(size_t ind);
-    T& Front();
-    T& Back();
+    T &At(size_t ind);
+    T &Front();
+    T &Back();
     size_t Size() const;
-    const T* Data() const; //возвращает указатель на начало массива
+    const T *Data() const; //возвращает указатель на начало массива
     bool Empty() const;
     void Fill(const T& value);
     void Swap(Array<T, N>& other); //меняет элементы массива
 
-    T& operator [] (size_t i);
-    T operator [] (size_t i) const;
+    T &operator[](size_t i);
+    T operator[](size_t i) const;
 };
 
 template <class T, size_t N>
-T& Array<T, N>::At(size_t ind){
+T &Array<T, N>::At(size_t ind){
     if (ind <= N - 1) {
         return arr[ind];
     } else {
@@ -38,12 +38,12 @@ T& Array<T, N>::At(size_t ind){
 }
 
 template <class T, size_t N>
-T& Array<T, N>::Front(){
+T &Array<T, N>::Front(){
     return arr[0];
 }
 
 template <class T, size_t N>
-T& Array<T, N>::Back(){
+T &Array<T, N>::Back(){
     if (N == 0) {
         return arr[N];
     } else {
@@ -52,17 +52,17 @@ T& Array<T, N>::Back(){
 
 }
 
-template<class T, size_t N>
+template <class T, size_t N>
 size_t Array<T, N>::Size() const{
     return N;
 }
 
-template<class T, size_t N>
-const T* Array<T, N>::Data() const {
+template <class T, size_t N>
+const T *Array<T, N>::Data() const {
     return &arr[0];
 }
 
-template<class T, size_t N>
+template <class T, size_t N>
 bool Array<T, N>::Empty() const {
     if (N == 0) {
         return true;
@@ -71,39 +71,39 @@ bool Array<T, N>::Empty() const {
     }
 }
 
-template<class T, size_t N>
+template <class T, size_t N>
 void Array<T, N>::Fill(const T &value) {
     for (size_t i = 0; i < N; ++i) {
         arr[i] = value;
     }
 }
 
-template<class T>
+template <class T>
 void swap(T &num1, T &num2) { //NOLINT
     T temp = num1;
     num1 = num2;
     num2 = temp;
 }
 
-template<class T, size_t N>
-void Array<T, N>::Swap(Array<T, N>& other) {
+template <class T, size_t N>
+void Array<T, N>::Swap(Array<T, N> &other) {
     for (size_t i = 0; i < N; ++i) {
         swap(arr[i], other[i]);
     }
 }
 
-template<class T, size_t N>
-T& Array<T, N>::operator [] (size_t i) {
+template <class T, size_t N>
+T &Array<T, N>::operator [] (size_t i) {
     return arr[i];
 }
 
-template<class T, size_t N>
+template <class T, size_t N>
 T Array<T, N>::operator [] (size_t i) const {
     return arr[i];
 }
 
-template<class T1, class T2, size_t N>
-bool operator < (const Array<T1, N> &first, const Array<T2, N> &second) {
+template <class T1, class T2, size_t N>
+bool operator<(const Array<T1, N> &first, const Array<T2, N> &second) {
     for (size_t i = 0; i < N; ++i) {
         if (first[i] < second[i]) {
             return true;
@@ -114,8 +114,8 @@ bool operator < (const Array<T1, N> &first, const Array<T2, N> &second) {
     return false;
 }
 
-template<class T1, class T2, size_t N>
-bool operator > (const Array<T1, N> &first, const Array<T2, N> &second) {
+template <class T1, class T2, size_t N>
+bool operator>(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (second < first) {
         return true;
     } else {
@@ -123,8 +123,8 @@ bool operator > (const Array<T1, N> &first, const Array<T2, N> &second) {
     }
 }
 
-template<class T1, class T2, size_t N>
-bool operator == (const Array<T1, N> &first, const Array<T2, N> &second) {
+template <class T1, class T2, size_t N>
+bool operator==(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (!(first < second) && !(second < first) == true) {
         return true;
     } else {
@@ -132,8 +132,8 @@ bool operator == (const Array<T1, N> &first, const Array<T2, N> &second) {
     }
 }
 
-template<class T1, class T2, size_t N>
-bool operator != (const Array<T1, N> &first, const Array<T2, N> &second) {
+template <class T1, class T2, size_t N>
+bool operator!=(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (first == second) {
         return false;
     } else {
@@ -141,8 +141,8 @@ bool operator != (const Array<T1, N> &first, const Array<T2, N> &second) {
     }
 }
 
-template<class T1, class T2, size_t N>
-bool operator <= (const Array<T1, N> &first, const Array<T2, N> &second) {
+template <class T1, class T2, size_t N>
+bool operator<=(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (first < second || first == second) {
         return true;
     } else {
@@ -150,8 +150,8 @@ bool operator <= (const Array<T1, N> &first, const Array<T2, N> &second) {
     }
 }
 
-template<class T1, class T2, size_t N>
-bool operator >= (const Array<T1, N> &first, const Array<T2, N> &second) {
+template <class T1, class T2, size_t N>
+bool operator>=(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (first > second || first == second) {
         return true;
     } else {

@@ -11,7 +11,7 @@ TEST(Array, Public) {
 
     ASSERT_EQ(sizeof(arr), sizeof(int) * 5);  // no dynamic arrays
 
-    ASSERT_EQ(arr.Size(), (size_t) 5);  // Size
+    ASSERT_EQ(arr.Size(), (size_t)5);  // Size
 
     ASSERT_FALSE(arr.Empty());  // Empty
 
