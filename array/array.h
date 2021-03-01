@@ -49,7 +49,6 @@ T &Array<T, N>::Back() {
     } else {
         return arr[N - 1];
     }
-
 }
 
 template <class T, size_t N>
@@ -79,7 +78,7 @@ void Array<T, N>::Fill(const T &value) {
 }
 
 template <class T>
-void swap(T &num1, T &num2) {  //NOLINT
+void swap(T &num1, T &num2) {  // NOLINT
     T temp = num1;
     num1 = num2;
     num2 = temp;
@@ -160,8 +159,8 @@ bool operator>=(const Array<T1, N> &first, const Array<T2, N> &second) {
 }
 
 namespace std {  // NOLINT
-    template <class T, size_t N>
-    void swap(Array<T, N> &first, Array<T,N> &second) {
+template <class T, size_t N>
+void swap(Array<T, N> &first, Array<T,N> &second) {
     first.Swap(second);
 }
 }  // namespace std
