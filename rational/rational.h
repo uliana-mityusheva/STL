@@ -1,7 +1,6 @@
 #ifndef RATIONAL_RATIONAL_H
 #define RATIONAL_RATIONAL_H
 
-#include "constants.h"
 #include <iostream>
 #include <numeric>
 #include <cstdlib>
