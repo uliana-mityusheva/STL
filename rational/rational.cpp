@@ -188,7 +188,6 @@ bool operator>(Rational &first, Rational &second) {
     }
 }
 
-
 bool operator<(Rational &first, Rational &second) {
     if (second > first) {
         return true;
