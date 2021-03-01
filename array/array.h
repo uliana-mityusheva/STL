@@ -19,31 +19,31 @@ public:
     T &Front();
     T &Back();
     size_t Size() const;
-    const T *Data() const; //возвращает указатель на начало массива
+    const T *Data() const;
     bool Empty() const;
-    void Fill(const T& value);
-    void Swap(Array<T, N>& other); //меняет элементы массива
+    void Fill(const T &value);
+    void Swap(Array<T, N> &other);
 
     T &operator[](size_t i);
     T operator[](size_t i) const;
 };
 
 template <class T, size_t N>
-T &Array<T, N>::At(size_t ind){
+T &Array<T, N>::At(size_t ind) {
     if (ind <= N - 1) {
         return arr[ind];
     } else {
-        throw ArrayOutOfRange{}; //исключение
+        throw ArrayOutOfRange{};
     }
 }
 
 template <class T, size_t N>
-T &Array<T, N>::Front(){
+T &Array<T, N>::Front() {
     return arr[0];
 }
 
 template <class T, size_t N>
-T &Array<T, N>::Back(){
+T &Array<T, N>::Back() {
     if (N == 0) {
         return arr[N];
     } else {
@@ -53,7 +53,7 @@ T &Array<T, N>::Back(){
 }
 
 template <class T, size_t N>
-size_t Array<T, N>::Size() const{
+size_t Array<T, N>::Size() const {
     return N;
 }
 
@@ -79,7 +79,7 @@ void Array<T, N>::Fill(const T &value) {
 }
 
 template <class T>
-void swap(T &num1, T &num2) { //NOLINT
+void swap(T &num1, T &num2) {  //NOLINT
     T temp = num1;
     num1 = num2;
     num2 = temp;
@@ -93,12 +93,12 @@ void Array<T, N>::Swap(Array<T, N> &other) {
 }
 
 template <class T, size_t N>
-T &Array<T, N>::operator [] (size_t i) {
+T &Array<T, N>::operator[](size_t i) {
     return arr[i];
 }
 
 template <class T, size_t N>
-T Array<T, N>::operator [] (size_t i) const {
+T Array<T, N>::operator[](size_t i) const {
     return arr[i];
 }
 
@@ -159,12 +159,12 @@ bool operator>=(const Array<T1, N> &first, const Array<T2, N> &second) {
     }
 }
 
-namespace std { //NOLINT
+namespace std {  // NOLINT
     template <class T, size_t N>
     void swap(Array<T, N> &first, Array<T,N> &second) {
     first.Swap(second);
 }
-}
+}  // namespace std
 
 #endif
 
