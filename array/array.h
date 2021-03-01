@@ -11,7 +11,8 @@ public:
 };
 
 template <class T, size_t N>
-struct Array {
+class Array {
+public:
     T arr[N];
 
     T& At(size_t ind);
@@ -87,7 +88,7 @@ void swap(T &num1, T &num2) { //NOLINT
 template<class T, size_t N>
 void Array<T, N>::Swap(Array<T, N>& other) {
     for (size_t i = 0; i < N; ++i) {
-        swap(arr[i], other[i]);//swap указатели
+        swap(arr[i], other[i]);
     }
 }
 
@@ -156,6 +157,13 @@ bool operator >= (const Array<T1, N> &first, const Array<T2, N> &second) {
     } else {
         return false;
     }
+}
+
+namespace std { //NOLINT
+    template <class T, size_t N>
+    void swap(Array<T, N> &first, Array<T,N> &second) {
+    first.Swap(second);
+}
 }
 
 #endif
