@@ -40,9 +40,11 @@ void Rational::Reduce() {
     denominator /= gcd;
 }
 
-Rational::Rational() : numerator(0), denominator(1) {}
+Rational::Rational() : numerator(0), denominator(1) {
+}
 
-Rational::Rational(int x) : numerator(x), denominator(1) {}
+Rational::Rational(int x) : numerator(x), denominator(1) {
+}
 
 Rational::Rational(int x, int y) {
     numerator = x;
@@ -95,7 +97,7 @@ std::ostream &operator<<(std::ostream &out, Rational &num) {
 
 Rational &Rational::operator+=(Rational add) {
     this->numerator = (add.numerator * this->denominator + this->numerator * add.denominator) /
-                          Gcd(this->denominator, add.denominator);
+                      Gcd(this->denominator, add.denominator);
     this->denominator = Lcm(this->denominator, add.denominator);
     this->Reduce();
     return *this;

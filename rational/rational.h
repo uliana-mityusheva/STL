@@ -18,6 +18,7 @@ private:
     int denominator;
 
     void Reduce();
+
 public:
     Rational();
     Rational(int x);

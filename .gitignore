@@ -3,4 +3,6 @@ build/
 cmake-build-debug/
 cmake-build-release/
 .gitlab-ci.yml
-
+rational/rational_public_tests.cpp
+rational/CMakeLists.txt
+rational/constants.h
