@@ -106,7 +106,8 @@ bool operator<(const Array<T1, N> &first, const Array<T2, N> &second) {
     for (size_t i = 0; i < N; ++i) {
         if (first[i] < second[i]) {
             return true;
-        } else if (second[i] < first[i]) {
+        }
+        if (second[i] < first[i]) {
             return false;
         }
     }
@@ -117,50 +118,45 @@ template <class T1, class T2, size_t N>
 bool operator>(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (second < first) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 template <class T1, class T2, size_t N>
 bool operator==(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (!(first < second) && !(second < first) == true) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 template <class T1, class T2, size_t N>
 bool operator!=(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (first == second) {
         return false;
-    } else {
-        return true;
     }
+    return true;
 }
 
 template <class T1, class T2, size_t N>
 bool operator<=(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (first < second || first == second) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 template <class T1, class T2, size_t N>
 bool operator>=(const Array<T1, N> &first, const Array<T2, N> &second) {
     if (first > second || first == second) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 namespace std {  // NOLINT
 template <class T, size_t N>
-void swap(Array<T, N> &first, Array<T, N> &second) {
+void Swap(Array<T, N> &first, Array<T, N> &second) {
     first.Swap(second);
 }
 }  // namespace std
