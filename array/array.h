@@ -16,8 +16,8 @@ public:
     T arr[N];
 
     T &At(size_t ind);
-    T &Front();
-    T &Back();
+    T &Front() const;
+    T &Back() const;
     size_t Size() const;
     const T *Data() const;
     bool Empty() const;
@@ -37,14 +37,14 @@ T &Array<T, N>::At(size_t ind) {
 }
 
 template <class T, size_t N>
-T &Array<T, N>::Front() {
+T &Array<T, N>::Front() const {
     return arr[0];
 }
 
 template <class T, size_t N>
-T &Array<T, N>::Back() {
+T &Array<T, N>::Back() const {
     if (N == 0) {
-        return arr[N];
+        return arr[0];
     }
     return arr[N - 1];
 }
