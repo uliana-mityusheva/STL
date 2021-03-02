@@ -77,7 +77,7 @@ const T *Array<T, N>::Data() const {
 }
 
 template <class T, size_t N>
- T *Array<T, N>::Data() {
+T *Array<T, N>::Data() {
     return &arr[0];
 }
 
