@@ -135,47 +135,27 @@ bool operator<(const Array<T1, N> &first, const Array<T2, N> &second) {
 
 template <class T1, class T2, size_t N>
 bool operator>(const Array<T1, N> &first, const Array<T2, N> &second) {
-    bool ans = false;
-    if (second < first) {
-        ans = true;
-    }
-    return ans;
+    return (second < first);
 }
 
 template <class T1, class T2, size_t N>
 bool operator==(const Array<T1, N> &first, const Array<T2, N> &second) {
-    bool ans = false;
-    if (!(first < second) && !(second < first) == true) {
-        ans = true;
-    }
-    return ans;
+    return (!(first < second) && !(second < first) == true);
 }
 
 template <class T1, class T2, size_t N>
 bool operator!=(const Array<T1, N> &first, const Array<T2, N> &second) {
-    bool ans = true;
-    if (first == second) {
-        ans = false;
-    }
-    return ans;
+    return !(first == second);
 }
 
 template <class T1, class T2, size_t N>
 bool operator<=(const Array<T1, N> &first, const Array<T2, N> &second) {
-    bool ans = false;
-    if (first < second || first == second) {
-        ans = true;
-    }
-    return ans;
+    return (first < second || first == second);
 }
 
 template <class T1, class T2, size_t N>
 bool operator>=(const Array<T1, N> &first, const Array<T2, N> &second) {
-    bool ans = false;
-    if (first > second || first == second) {
-        ans = true;
-    }
-    return ans;
+    return (first > second || first == second);
 }
 
 namespace std {  // NOLINT
