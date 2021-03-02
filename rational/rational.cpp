@@ -172,58 +172,34 @@ Rational operator--(Rational &num, int) {
     return copy;
 }
 
-bool operator>(Rational &first, Rational &second) {
+bool operator>(const Rational &first, const Rational &second) {
+    bool ans = false;
     if (first.numerator * second.numerator < 0) {
         if (first.numerator > 0) {
-            return true;
-        } else {
-            return false;
+            ans = true;
         }
+    } else if (first.numerator * second.denominator > second.numerator * first.denominator) {
+        ans = true;
     }
-
-    if (first.numerator * second.denominator > second.numerator * first.denominator) {
-        return true;
-    } else {
-        return false;
-    }
+    return ans;
 }
 
-bool operator<(Rational &first, Rational &second) {
-    if (second > first) {
-        return true;
-    } else {
-        return false;
-    }
+bool operator<(const Rational &first, const Rational &second) {
+    return (second > first)
 }
 
-bool operator==(Rational &first, Rational &second) {
-    if (first > second || first < second) {
-        return false;
-    } else {
-        return true;
-    }
+bool operator==(const Rational &first, const Rational &second) {
+    return (!(first > second) && !(second > first))
 }
 
-bool operator!=(Rational &first, Rational &second) {
-    if (first == second) {
-        return false;
-    } else {
-        return true;
-    }
+bool operator!=(const Rational &first, const Rational &second) {
+    return !(first == second)
 }
 
-bool operator>=(Rational &first, Rational &second) {
-    if (first > second || first == second) {
-        return true;
-    } else {
-        return false;
-    }
+bool operator>=(const Rational &first, const Rational &second) {
+    return (first > second || first == second);
 }
 
-bool operator<=(Rational &first, Rational &second) {
-    if (first < second || first == second) {
-        return true;
-    } else {
-        return false;
-    }
+bool operator<=(const Rational &first, const Rational &second) {
+    return (first < second || first == second);
 }
