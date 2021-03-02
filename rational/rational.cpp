@@ -172,7 +172,7 @@ Rational operator--(Rational &num, int) {
     return copy;
 }
 
-friend bool Rational::operator>(const Rational &first, const Rational &second) {
+bool operator>(const Rational &first, const Rational &second) {
     bool ans = false;
     if (first.numerator * second.numerator < 0) {
         if (first.numerator > 0) {
