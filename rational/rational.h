@@ -36,7 +36,7 @@ public:
     Rational &operator*=(Rational add);
     Rational &operator/=(Rational add);
 
-    friend bool operator>(Rational &first, Rational &second);
+    friend bool operator>(const Rational &first, const Rational &second);
 };
 
 Rational operator+(Rational first, Rational second);
@@ -52,11 +52,11 @@ Rational &operator--(Rational &num);
 Rational operator++(Rational &num, int);
 Rational operator--(Rational &num, int);
 
-bool operator>(Rational &first, Rational &second);
-bool operator<(Rational &first, Rational &second);
-bool operator==(Rational &first, Rational &second);
-bool operator!=(Rational &first, Rational &second);
-bool operator>=(Rational &first, Rational &second);
-bool operator<=(Rational &first, Rational &second);
+bool operator>(const Rational &first, const Rational &second);
+bool operator<(const Rational &first, const Rational &second);
+bool operator==(const Rational &first, const Rational &second);
+bool operator!=(const Rational &first, const Rational &second);
+bool operator>=(const Rational &first, const Rational &second);
+bool operator<=(const Rational &first, const Rational &second);
 
 #endif
