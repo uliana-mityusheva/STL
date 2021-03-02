@@ -140,7 +140,7 @@ bool operator>(const Array<T1, N> &first, const Array<T2, N> &second) {
 
 template <class T1, class T2, size_t N>
 bool operator==(const Array<T1, N> &first, const Array<T2, N> &second) {
-    return (!(first < second) && !(second < first) == true);
+    return (!(first < second) && !(second < first));
 }
 
 template <class T1, class T2, size_t N>
