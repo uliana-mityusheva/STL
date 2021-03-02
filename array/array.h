@@ -32,9 +32,8 @@ template <class T, size_t N>
 T &Array<T, N>::At(size_t ind) {
     if (ind <= N - 1) {
         return arr[ind];
-    } else {
-        throw ArrayOutOfRange{};
     }
+    throw ArrayOutOfRange{};
 }
 
 template <class T, size_t N>
@@ -46,9 +45,8 @@ template <class T, size_t N>
 T &Array<T, N>::Back() {
     if (N == 0) {
         return arr[N];
-    } else {
-        return arr[N - 1];
     }
+    return arr[N - 1];
 }
 
 template <class T, size_t N>
@@ -63,11 +61,11 @@ const T *Array<T, N>::Data() const {
 
 template <class T, size_t N>
 bool Array<T, N>::Empty() const {
+    bool ans = false;
     if (N == 0) {
-        return true;
-    } else {
-        return false;
+        ans = true;
     }
+    return ans;
 }
 
 template <class T, size_t N>
@@ -103,55 +101,61 @@ T Array<T, N>::operator[](size_t i) const {
 
 template <class T1, class T2, size_t N>
 bool operator<(const Array<T1, N> &first, const Array<T2, N> &second) {
+    bool ans = false;
     for (size_t i = 0; i < N; ++i) {
         if (first[i] < second[i]) {
-            return true;
+            ans = true;
         }
         if (second[i] < first[i]) {
-            return false;
+            ans = false;
         }
     }
-    return false;
+    return ans;
 }
 
 template <class T1, class T2, size_t N>
 bool operator>(const Array<T1, N> &first, const Array<T2, N> &second) {
+    bool ans = false;
     if (second < first) {
-        return true;
+        ans = true;
     }
-    return false;
+    return ans;
 }
 
 template <class T1, class T2, size_t N>
 bool operator==(const Array<T1, N> &first, const Array<T2, N> &second) {
+    bool ans = false;
     if (!(first < second) && !(second < first) == true) {
-        return true;
+        ans = true;
     }
-    return false;
+    return ans;
 }
 
 template <class T1, class T2, size_t N>
 bool operator!=(const Array<T1, N> &first, const Array<T2, N> &second) {
+    bool ans = true;
     if (first == second) {
-        return false;
+        ans = false;
     }
-    return true;
+    return ans;
 }
 
 template <class T1, class T2, size_t N>
 bool operator<=(const Array<T1, N> &first, const Array<T2, N> &second) {
+    bool ans = false;
     if (first < second || first == second) {
-        return true;
+        ans = true;
     }
-    return false;
+    return ans;
 }
 
 template <class T1, class T2, size_t N>
 bool operator>=(const Array<T1, N> &first, const Array<T2, N> &second) {
+    bool ans = false;
     if (first > second || first == second) {
-        return true;
+        ans = true;
     }
-    return false;
+    return ans;
 }
 
 namespace std {  // NOLINT
