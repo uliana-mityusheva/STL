@@ -70,7 +70,7 @@ void Rational::SetDenominator(int num) {
     Reduce();
 }
 
-friend std::istream &operator>>(std::istream &is, Rational &num) {
+friend Rational::std::istream &operator>>(std::istream &is, Rational &num) {
     const int MaxStringSize = 32;
     char str[MaxStringSize];
     is >> str;
@@ -86,7 +86,7 @@ friend std::istream &operator>>(std::istream &is, Rational &num) {
     return is;
 }
 
-friend std::ostream &operator<<(std::ostream &out, Rational &num) {
+friend Rational::std::ostream &operator<<(std::ostream &out, Rational &num) {
     if (num.denominator != 1) {
         out << num.numerator << "/" << num.denominator;
     } else {
