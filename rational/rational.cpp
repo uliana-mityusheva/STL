@@ -172,7 +172,7 @@ Rational operator--(Rational &num, int) {
     return copy;
 }
 
-bool operator>(const Rational &first, const Rational &second) {
+friend bool operator>(const Rational &first, const Rational &second) {
     bool ans = false;
     if (first.numerator * second.numerator < 0) {
         if (first.numerator > 0) {
@@ -185,15 +185,15 @@ bool operator>(const Rational &first, const Rational &second) {
 }
 
 bool operator<(const Rational &first, const Rational &second) {
-    return (second > first)
+    return (second > first);
 }
 
 bool operator==(const Rational &first, const Rational &second) {
-    return (!(first > second) && !(second > first))
+    return (!(first > second) && !(second > first));
 }
 
 bool operator!=(const Rational &first, const Rational &second) {
-    return !(first == second)
+    return !(first == second);
 }
 
 bool operator>=(const Rational &first, const Rational &second) {
