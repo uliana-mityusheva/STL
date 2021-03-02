@@ -29,7 +29,7 @@ public:
     void Swap(Array<T, N> &other);
 
     T &operator[](size_t i);
-    T operator[](size_t i) const;
+    const T &operator[](size_t i) const;
 };
 
 template <class T, size_t N>
@@ -117,7 +117,7 @@ T &Array<T, N>::operator[](size_t i) {
 }
 
 template <class T, size_t N>
-T Array<T, N>::operator[](size_t i) const {
+const T &Array<T, N>::operator[](size_t i) const {
     return arr[i];
 }
 
