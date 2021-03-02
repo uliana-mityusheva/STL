@@ -52,7 +52,6 @@ Rational &operator--(Rational &num);
 Rational operator++(Rational &num, int);
 Rational operator--(Rational &num, int);
 
-bool operator>(const Rational &first, const Rational &second);
 bool operator<(const Rational &first, const Rational &second);
 bool operator==(const Rational &first, const Rational &second);
 bool operator!=(const Rational &first, const Rational &second);
