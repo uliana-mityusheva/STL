@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include <public_tests/util/comparision_check.h>
-#include <public_tests/util/equal_range_check.h>
+#include <util/comparision_check.h>
+#include <util/equal_range_check.h>
 
 #include "array.h"
 
