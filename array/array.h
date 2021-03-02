@@ -125,8 +125,11 @@ template <class T1, class T2, size_t N>
 bool operator<(const Array<T1, N> &first, const Array<T2, N> &second) {
     bool ans = true;
     for (size_t i = 0; i < N; ++i) {
-        if (second[i] <= first[i]) {
+        if (second[i] < first[i]) {
             ans = false;
+            break;
+        }
+        if (first[i] < second[i]) {
             break;
         }
     }
