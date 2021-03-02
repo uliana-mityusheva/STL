@@ -22,6 +22,7 @@ public:
     T const &Back() const;
 
     size_t Size() const;
+    T *Data();
     const T *Data() const;
     bool Empty() const;
     void Fill(const T &value);
@@ -72,6 +73,11 @@ size_t Array<T, N>::Size() const {
 
 template <class T, size_t N>
 const T *Array<T, N>::Data() const {
+    return &arr[0];
+}
+
+template <class T, size_t N>
+ T *Array<T, N>::Data() {
     return &arr[0];
 }
 
