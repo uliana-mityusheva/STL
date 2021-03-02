@@ -166,4 +166,3 @@ void swap(Array<T, N> &first, Array<T, N> &second) {
 }  // namespace std
 
 #endif
-
