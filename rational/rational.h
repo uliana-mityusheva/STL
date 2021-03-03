@@ -28,8 +28,8 @@ public:
     void SetNumerator(int num);
     void SetDenominator(int num);
 
-    friend std::istream &operator>>(std::istream &is, Rational &num);
-    friend std::ostream &operator<<(std::ostream &out, Rational &num);
+    friend std::istream &operator>>(std::istream &is, const Rational &num);
+    friend std::ostream &operator<<(std::ostream &out, const Rational &num);
 
     Rational &operator+=(Rational add);
     Rational &operator-=(Rational add);
