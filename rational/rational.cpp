@@ -2,28 +2,8 @@
 #include <numeric>
 #include "rational.h"
 
-int Gcd(int first, int second) {
-    if (second < 0) {
-        second *= -1;
-    }
-    if (first < 0) {
-        first *= -1;
-    }
-
-    if (first < second) {
-        std::swap(first, second);
-    }
-    while (first % second != 0) {
-        first = first % second;
-        if (first < second) {
-            std::swap(first, second);
-        }
-    }
-    return second;
-}
-
 int Lcm(int first, int second) {
-    return (first * second) / Gcd(first, second);
+    return (first * second) / std::gcd(first, second);
 }
 
 void Rational::Reduce() {
@@ -31,7 +11,7 @@ void Rational::Reduce() {
         throw RationalDivisionByZero{};
     }
 
-    int gcd = Gcd(numerator, denominator);
+    int gcd = std::gcd(numerator, denominator);
     if (denominator < 0) {
         numerator *= -1;
         denominator *= -1;
@@ -97,7 +77,7 @@ std::ostream &operator<<(std::ostream &out, const Rational &num) {
 
 Rational &Rational::operator+=(Rational add) {
     this->numerator = (add.numerator * this->denominator + this->numerator * add.denominator) /
-                      Gcd(this->denominator, add.denominator);
+                      std::gcd(this->denominator, add.denominator);
     this->denominator = Lcm(this->denominator, add.denominator);
     this->Reduce();
     return *this;
