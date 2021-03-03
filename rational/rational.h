@@ -29,7 +29,7 @@ public:
     void SetDenominator(int num);
 
     friend std::istream &operator>>(std::istream &is, Rational &num);
-    friend std::ostream &operator<<(std::ostream &out, const Rational &num) const;
+    friend std::ostream &operator<<(std::ostream &out, const Rational &num);
 
     Rational &operator+=(Rational add);
     Rational &operator-=(Rational add);

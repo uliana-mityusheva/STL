@@ -86,7 +86,7 @@ std::istream &operator>>(std::istream &is, Rational &num) {
     return is;
 }
 
-std::ostream &operator<<(std::ostream &out, const Rational &num) const {
+std::ostream &operator<<(std::ostream &out, const Rational &num) {
     if (num.denominator != 1) {
         out << num.numerator << "/" << num.denominator;
     } else {
