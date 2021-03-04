@@ -167,12 +167,14 @@ void Vector<T>::Resize(size_t new_size, const T &value) {
 
 template <class T>
 void Vector<T>::Reserve(size_t new_cap) {
-    capacity_ = std::max(new_cap, capacity_);
+    if (new_cap > capacity_) {
+        BufferReallocation(new_cap);
+    }
 }
 
 template <class T>
 void Vector<T>::ShrinkToFit() {
-    capacity_ = size_;
+    BufferReallocation(size_);
 }
 
 template <class T>
