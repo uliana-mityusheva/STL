@@ -147,7 +147,7 @@ void Vector<T>::PopBack() {
 template <class T>
 void Vector<T>::Resize(size_t new_size) {
     if (new_size > capacity_) {
-        capacity_ = new_size;
+        BufferReallocation(new_size);
     }
     size_ = new_size;
 }
@@ -155,7 +155,7 @@ void Vector<T>::Resize(size_t new_size) {
 template <class T>
 void Vector<T>::Resize(size_t new_size, const T &value) {
     if (new_size > capacity_) {
-        capacity_ = new_size;
+        BufferReallocation(new_size);
     }
     if (new_size > size_) {
         for (size_t i = size_; i < new_size; ++i) {
