@@ -10,10 +10,10 @@ public:
 };
 
 
-template<class T>
+template <class T>
 class Vector {
 private:
-    T* buffer_;
+    T *buffer_;
     size_t size_;
     size_t capacity_;
 
@@ -24,7 +24,7 @@ public:
     Vector();
     explicit Vector(size_t size);
     Vector(size_t size, const T &value);
-    Vector(const Vector& other);
+    Vector(const Vector &other);
     ~Vector();
 
     void Clear();
@@ -51,31 +51,31 @@ public:
     T &operator[](size_t ind);
     const T &operator[](size_t ind) const;
 
-    Vector &operator=(const Vector &other); //if &other == this return *this -> for(..) + delete old buffer
+    Vector &operator=(const Vector &other);  //if &other == this return *this -> for(..) + delete old buffer
 };
 
-template<class T>
-void Copy(T* buffer_to, T* buffer_from, size_t size) {
+template <class T>
+void Copy(T *buffer_to, T *buffer_from, size_t size) {
     for (size_t i = 0; i < size; ++i) {
         buffer_to[i] = buffer_from[i];
     }
 }
 
-template<class T>
+template <class T>
 void Vector<T>::Fill(size_t start, size_t end, const T &value) {
-    for(size_t i = start; i < end; ++i) {
+    for (size_t i = start; i < end; ++i) {
         buffer_[i] = value;
     }
 }
 
-template<class T>
+template <class T>
 size_t Vector<T>::FindCorrectionCapacity() {
     return (capacity_ = 0) ? 1 : capacity_ * 2;
 }
 
-template<class T>
+template <class T>
 void Vector<T>::BufferReallocation(size_t new_capacity) {
-    T* new_buffer = (new_capacity == 0) ? nullptr : new T[new_capacity];
+    T *new_buffer = (new_capacity == 0) ? nullptr : new T[new_capacity];
     size_ = std::min(size_, new_capacity);
 
     Copy(new_buffer, buffer_, size_);
@@ -84,51 +84,51 @@ void Vector<T>::BufferReallocation(size_t new_capacity) {
     buffer_ = new_buffer;
 }
 
-template<class T>
+template <class T>
 Vector<T>::Vector(): buffer_(nullptr), size_(0), capacity_(0) {}
 
-template<class T>
-Vector<T>::Vector(size_t size): size_(size), capacity_(2 * size) { //(2 * size)?? can not working -> (size)
+template <class T>
+Vector<T>::Vector(size_t size): size_(size), capacity_(2 * size) {  //(2 * size)?? can not working -> (size)
     buffer_ = new T[capacity_];
 }
 
-template<class T>
+template <class T>
 Vector<T>::Vector(size_t size, const T &value): size_(size), capacity_(size) {
     buffer_ = new T[capacity_];
     Fill(0, size_, value);
 }
 
-template<class T>
+template <class T>
 Vector<T>::Vector(const Vector& other): size_(other.Size()),  capacity_(other.Capacity()) {
     buffer_ = new T[capacity_];
     Copy(buffer_, other.buffer_, size_);
 }
 
-template<class T>
+template <class T>
 Vector<T>::~Vector() {
     delete[] buffer_;
 }
 
-template<class T>
+template <class T>
 void Vector<T>::Clear() {
     size_ = 0;
 }
 
-template<class T>
+template <class T>
 void Swap(T& a, T& b) {
     T c = a;
     a = b;
     b = c;
 }
 
-template<class T>
+template <class T>
 void Vector<T>::Swap(Vector<T> &other) {
-    ::Swap(buffer_, other.buffer_); //use global Swap
+    ::Swap(buffer_, other.buffer_);   //use global Swap
     ::Swap(capacity_, other.capacity_);
     ::Swap(size_, other.size_);
 }
 
-template<class T>
+template <class T>
 void Vector<T>::PushBack(const T &value) {
     if (size_ == capacity_) {
         FindCorrectionCapacity();
@@ -137,14 +137,14 @@ void Vector<T>::PushBack(const T &value) {
     ++size_;
 }
 
-template<class T>
+template <class T>
 void Vector<T>::PopBack() {
     if (size_ > 0) {
         --size_;
     }
 }
 
-template<class T>
+template <class T>
 void Vector<T>::Resize(size_t new_size) {
     if (new_size > capacity_) {
         capacity_ = new_size;
@@ -152,7 +152,7 @@ void Vector<T>::Resize(size_t new_size) {
     size_ = new_size;
 }
 
-template<class T>
+template <class T>
 void Vector<T>::Resize(size_t new_size, const T &value) {
     if (new_size > capacity_) {
         capacity_ = new_size;
@@ -165,27 +165,27 @@ void Vector<T>::Resize(size_t new_size, const T &value) {
     size_ = new_size;
 }
 
-template<class T>
+template <class T>
 void Vector<T>::Reserve(size_t new_cap) {
     capacity_ = std::max(new_cap, capacity_);
 }
 
-template<class T>
+template <class T>
 void Vector<T>::ShrinkToFit() {
     capacity_ = size_;
 }
 
-template<class T>
+template <class T>
 T &Vector<T>::operator[](size_t ind) {
     return buffer_[ind];
 }
 
-template<class T>
+template <class T>
 const T &Vector<T>::operator[](size_t ind) const {
     return buffer_[ind];
 }
 
-template<class T>
+template <class T>
 T &Vector<T>::At(size_t ind) {
     if (ind < size_) {
         return buffer_[ind];
@@ -194,7 +194,7 @@ T &Vector<T>::At(size_t ind) {
     }
 }
 
-template<class T>
+template <class T>
 const T &Vector<T>::At(size_t ind) const {
     if (ind < size_) {
         return buffer_[ind];
@@ -203,58 +203,58 @@ const T &Vector<T>::At(size_t ind) const {
     }
 }
 
-template<class T>
+template <class T>
 T &Vector<T>::Front() {
     return buffer_[0];
 }
 
-template<class T>
+template <class T>
 const T & Vector<T>::Front() const {
     return buffer_[0];
 }
 
-template<class T>
-T & Vector<T>::Back() {
+template <class T>
+T &Vector<T>::Back() {
     if (size_ == 0) {
         return buffer_[0];
     }
     return buffer_[size_ - 1];
 }
 
-template<class T>
-const T & Vector<T>::Back() const {
+template <class T>
+const T &Vector<T>::Back() const {
     if (size_ == 0) {
         return buffer_[0];
     }
     return buffer_[size_ - 1];
 }
 
-template<class T>
+template <class T>
 bool Vector<T>::Empty() const {
     return (size_ == 0);
 }
 
-template<class T>
+template <class T>
 size_t Vector<T>::Size() const {
     return size_;
 }
 
-template<class T>
+template <class T>
 size_t Vector<T>::Capacity() const {
     return capacity_;
 }
 
-template<class T>
+template <class T>
 const T *Vector<T>::Data() const {
     return &buffer_[0];
 }
 
-template<class T>
+template <class T>
 T *Vector<T>::Data() {
     return &buffer_[0];
 }
 
-template<class T>
+template <class T>
 Vector<T> &Vector<T>::operator=(const Vector<T> &other) {
     if (&other != this) {
         delete[] buffer_;
