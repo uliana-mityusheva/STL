@@ -99,7 +99,7 @@ Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_(size) {
 }
 
 template <class T>
-Vector<T>::Vector(const Vector& other) : size_(other.Size()), capacity_(other.Capacity()) {
+Vector<T>::Vector(const Vector &other) : size_(other.Size()), capacity_(other.Capacity()) {
     buffer_ = new T[capacity_];
     Copy(buffer_, other.buffer_, size_);
 }
