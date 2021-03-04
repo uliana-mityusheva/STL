@@ -19,7 +19,7 @@ private:
 
     void Fill(size_t start, size_t end, const T &value);
     size_t FindCorrectionCapacity();
-    void BufferReallocation(size_t new_capacity); //new_capacity can be less then size
+    void BufferReallocation(size_t new_capacity);  // new_capacity can be less then size
 public:
     Vector();
     explicit Vector(size_t size);
@@ -51,7 +51,7 @@ public:
     T &operator[](size_t ind);
     const T &operator[](size_t ind) const;
 
-    Vector &operator=(const Vector &other);  //if &other == this return *this -> for(..) + delete old buffer
+    Vector &operator=(const Vector &other);  // if &other == this return *this -> for(..) + delete old buffer
 };
 
 template <class T>
@@ -85,21 +85,23 @@ void Vector<T>::BufferReallocation(size_t new_capacity) {
 }
 
 template <class T>
-Vector<T>::Vector(): buffer_(nullptr), size_(0), capacity_(0) {}
+Vector<T>::Vector() : buffer_(nullptr), size_(0), capacity_(0) {
+
+}
 
 template <class T>
-Vector<T>::Vector(size_t size): size_(size), capacity_(2 * size) {  //(2 * size)?? can not working -> (size)
+Vector<T>::Vector(size_t size) : size_(size), capacity_(2 * size) {  // (2 * size)?? can not working -> (size)
     buffer_ = new T[capacity_];
 }
 
 template <class T>
-Vector<T>::Vector(size_t size, const T &value): size_(size), capacity_(size) {
+Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_(size) {
     buffer_ = new T[capacity_];
     Fill(0, size_, value);
 }
 
 template <class T>
-Vector<T>::Vector(const Vector& other): size_(other.Size()),  capacity_(other.Capacity()) {
+Vector<T>::Vector(const Vector& other) : size_(other.Size()),  capacity_(other.Capacity()) {
     buffer_ = new T[capacity_];
     Copy(buffer_, other.buffer_, size_);
 }
@@ -115,7 +117,7 @@ void Vector<T>::Clear() {
 }
 
 template <class T>
-void Swap(T& a, T& b) {
+void Swap(T &a, T &b) {
     T c = a;
     a = b;
     b = c;
@@ -123,7 +125,7 @@ void Swap(T& a, T& b) {
 
 template <class T>
 void Vector<T>::Swap(Vector<T> &other) {
-    ::Swap(buffer_, other.buffer_);   //use global Swap
+    ::Swap(buffer_, other.buffer_);  // use global Swap
     ::Swap(capacity_, other.capacity_);
     ::Swap(size_, other.size_);
 }
@@ -209,7 +211,7 @@ T &Vector<T>::Front() {
 }
 
 template <class T>
-const T & Vector<T>::Front() const {
+const T &Vector<T>::Front() const {
     return buffer_[0];
 }
 
