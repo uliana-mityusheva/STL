@@ -189,18 +189,16 @@ template <class T>
 T &Vector<T>::At(size_t ind) {
     if (ind < size_) {
         return buffer_[ind];
-    } else {
-        throw VectorOutOfRange{};
     }
+    throw VectorOutOfRange{};
 }
 
 template <class T>
 const T &Vector<T>::At(size_t ind) const {
     if (ind < size_) {
         return buffer_[ind];
-    } else {
-        throw VectorOutOfRange{};
     }
+    throw VectorOutOfRange{};
 }
 
 template <class T>
