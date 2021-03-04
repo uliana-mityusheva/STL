@@ -9,7 +9,6 @@ public:
     }
 };
 
-
 template <class T>
 class Vector {
 private:
@@ -86,7 +85,6 @@ void Vector<T>::BufferReallocation(size_t new_capacity) {
 
 template <class T>
 Vector<T>::Vector() : buffer_(nullptr), size_(0), capacity_(0) {
-
 }
 
 template <class T>
@@ -101,7 +99,7 @@ Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_(size) {
 }
 
 template <class T>
-Vector<T>::Vector(const Vector& other) : size_(other.Size()),  capacity_(other.Capacity()) {
+Vector<T>::Vector(const Vector& other) : size_(other.Size()), capacity_(other.Capacity()) {
     buffer_ = new T[capacity_];
     Copy(buffer_, other.buffer_, size_);
 }
