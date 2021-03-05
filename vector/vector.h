@@ -113,8 +113,8 @@ template <class T>
 void Vector<T>::Clear() {
     size_ = 0;
     // new
-    capacity_ = 0;
-    BufferReallocation(capacity_);
+    // capacity_ = 0;
+    // BufferReallocation(capacity_);
     // delete[] buffer_;
 }
 
