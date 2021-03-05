@@ -93,7 +93,7 @@ Vector<T>::Vector(size_t size) : size_(size), capacity_(2 * size) {  // (2 * siz
 }
 
 template <class T>
-Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_(size) {
+Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_(2 * size) {
     buffer_ = new T[capacity_];
     Fill(0, size_, value);
 }
@@ -112,6 +112,9 @@ Vector<T>::~Vector() {
 template <class T>
 void Vector<T>::Clear() {
     size_ = 0;
+    // new
+    capacity_ = 0;
+    delete [] buffer_;
 }
 
 template <class T>
@@ -131,7 +134,8 @@ void Vector<T>::Swap(Vector<T> &other) {
 template <class T>
 void Vector<T>::PushBack(const T &value) {
     if (size_ == capacity_) {
-        FindCorrectionCapacity();
+        capacity_ = FindCorrectionCapacity();
+        BufferReallocation();
     }
     buffer_[size_] = value;
     ++size_;
@@ -141,7 +145,7 @@ template <class T>
 void Vector<T>::PopBack() {
     if (size_ > 0) {
         --size_;
-    }
+    }  // realoc + change capacity
 }
 
 template <class T>
@@ -150,14 +154,16 @@ void Vector<T>::Resize(size_t new_size) {
         BufferReallocation(new_size);
     }
     size_ = new_size;
+    capacity_ = size_;
 }
 
 template <class T>
 void Vector<T>::Resize(size_t new_size, const T &value) {
-    if (new_size > capacity_) {
-        BufferReallocation(new_size);
-    }
     if (new_size > size_) {
+        if (new_size > capacity_) {
+            BufferReallocation(new_size);
+        }
+
         for (size_t i = size_; i < new_size; ++i) {
             buffer_[i] = value;
         }
