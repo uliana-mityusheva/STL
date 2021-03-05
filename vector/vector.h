@@ -135,7 +135,7 @@ template <class T>
 void Vector<T>::PushBack(const T &value) {
     if (size_ == capacity_) {
         capacity_ = FindCorrectionCapacity();
-        BufferReallocation();
+        BufferReallocation(capacity_);
     }
     buffer_[size_] = value;
     ++size_;
