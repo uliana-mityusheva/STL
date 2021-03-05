@@ -69,7 +69,7 @@ void Vector<T>::Fill(size_t start, size_t end, const T &value) {
 
 template <class T>
 size_t Vector<T>::FindCorrectionCapacity() {
-    return (capacity_ = 0) ? 1 : capacity_ * 2;
+    return (capacity_ == 0) ? 1 : capacity_ * 2;
 }
 
 template <class T>
