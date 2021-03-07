@@ -18,7 +18,7 @@ private:
 
     void Fill(size_t start, size_t end, const T &value);
     size_t FindCorrectionCapacity();
-    void BufferReallocation(size_t new_capacity);  // new_capacity can be less then size
+    void BufferReallocation(size_t new_capacity);
 public:
     Vector();
     explicit Vector(size_t size);
@@ -50,7 +50,7 @@ public:
     T &operator[](size_t ind);
     const T &operator[](size_t ind) const;
 
-    Vector &operator=(const Vector &other);  // if &other == this return *this -> for(..) + delete old buffer
+    Vector &operator=(const Vector &other);
 };
 
 template <class T>
@@ -142,7 +142,7 @@ template <class T>
 void Vector<T>::PopBack() {
     if (size_ > 0) {
         --size_;
-    }  // realoc + change capacity
+    }
 }
 
 template <class T>
