@@ -88,12 +88,12 @@ Vector<T>::Vector() : buffer_(nullptr), size_(0), capacity_(0) {
 }
 
 template <class T>
-Vector<T>::Vector(size_t size) : size_(size), capacity_(2 * size) {  // (2 * size)?? can not working -> (size)
+Vector<T>::Vector(size_t size) : size_(size), capacity_(FindCorrectionCapacity(size_)) {
     buffer_ = new T[capacity_];
 }
 
 template <class T>
-Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_(2 * size) {
+Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_(FindCorrectionCapacity(size_)) {
     buffer_ = new T[capacity_];
     Fill(0, size_, value);
 }
@@ -173,7 +173,9 @@ void Vector<T>::Reserve(size_t new_cap) {
 
 template <class T>
 void Vector<T>::ShrinkToFit() {
-    BufferReallocation(size_);
+    if (size_ != capacity_) {
+        BufferReallocation(size_);
+    }
 }
 
 template <class T>
