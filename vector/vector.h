@@ -19,6 +19,7 @@ private:
     void Fill(size_t start, size_t end, const T &value);
     size_t FindCorrectionCapacity();
     void BufferReallocation(size_t new_capacity);
+    
 public:
     Vector();
     explicit Vector(size_t size);
