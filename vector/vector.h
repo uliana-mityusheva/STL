@@ -88,12 +88,12 @@ Vector<T>::Vector() : buffer_(nullptr), size_(0), capacity_(0) {
 }
 
 template <class T>
-Vector<T>::Vector(size_t size) : size_(size), capacity_((size_ == 0) ? 1 : size_ * 2) {
+Vector<T>::Vector(size_t size) : size_(size), capacity_((size_ == 0) ? 1 : size_) {
     buffer_ = new T[capacity_];
 }
 
 template <class T>
-Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_((size_ == 0) ? 1 : size_ * 2) {
+Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_((size_ == 0) ? 1 : size_) {
     buffer_ = new T[capacity_];
     Fill(0, size_, value);
 }
@@ -260,6 +260,7 @@ Vector<T> &Vector<T>::operator=(const Vector<T> &other) {
     if (&other != this) {
         delete[] buffer_;
         buffer_ = new T[other.capacity_];
+        capacity_ = other.capacity_;
         size_ = other.size_;
         Copy(buffer_, other.buffer_, size_);
     }
