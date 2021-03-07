@@ -88,12 +88,12 @@ Vector<T>::Vector() : buffer_(nullptr), size_(0), capacity_(0) {
 }
 
 template <class T>
-Vector<T>::Vector(size_t size) : size_(size), capacity_(FindCorrectionCapacity(size_)) {
+Vector<T>::Vector(size_t size) : size_(size), capacity_((size_ == 0) ? 1 : size_ * 2) {
     buffer_ = new T[capacity_];
 }
 
 template <class T>
-Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_(FindCorrectionCapacity(size_)) {
+Vector<T>::Vector(size_t size, const T &value) : size_(size), capacity_((size_ == 0) ? 1 : size_ * 2) {
     buffer_ = new T[capacity_];
     Fill(0, size_, value);
 }
