@@ -7,98 +7,98 @@ int Lcm(int first, int second) {
 }
 
 void Rational::Reduce() {
-    if (denominator == 0) {
+    if (denominator_ == 0) {
         throw RationalDivisionByZero{};
     }
 
-    int gcd = std::gcd(numerator, denominator);
-    if (denominator < 0) {
-        numerator *= -1;
-        denominator *= -1;
+    int gcd = std::gcd(numerator_, denominator_);
+    if (denominator_ < 0) {
+        numerator_ *= -1;
+        denominator_ *= -1;
     }
-    numerator /= gcd;
-    denominator /= gcd;
+    numerator_ /= gcd;
+    denominator_ /= gcd;
 }
 
-Rational::Rational() : numerator(0), denominator(1) {
+Rational::Rational() : numerator_(0), denominator_(1) {
 }
 
-Rational::Rational(int x) : numerator(x), denominator(1) {
+Rational::Rational(int num) : numerator_(num), denominator_(1) {
 }
 
-Rational::Rational(int x, int y) {
-    numerator = x;
-    denominator = y;
+Rational::Rational(int num, int den) {
+    numerator_ = x;
+    denominator_ = y;
     Reduce();
 }
 
-int Rational::GetNumerator() const {
-    return numerator;
+int Rational::Getnumerator_() const {
+    return numerator_;
 }
 
-int Rational::GetDenominator() const {
-    return denominator;
+int Rational::Getdenominator_() const {
+    return denominator_;
 }
 
-void Rational::SetNumerator(int num) {
-    numerator = num;
+void Rational::Setnumerator_(int fract) {
+    numerator_ = fract;
     Reduce();
 }
 
-void Rational::SetDenominator(int num) {
-    denominator = num;
+void Rational::Setdenominator_(int fract) {
+    denominator_ = fract;
     Reduce();
 }
 
-std::istream &operator>>(std::istream &is, Rational &num) {
+std::istream &operator>>(std::istream &is, Rational &fract) {
     const int MaxStringSize = 32;
     char str[MaxStringSize];
     is >> str;
     char *end_ptr;
-    num.numerator = strtol(str, &end_ptr, 10);
+    fract.numerator_ = strtol(str, &end_ptr, 10);
     if (*end_ptr != 0) {
         ++end_ptr;
-        num.denominator = strtol(end_ptr, &end_ptr, 10);
+        fract.denominator__ = strtol(end_ptr, &end_ptr, 10);
     } else {
-        num.denominator = 1;
+        fract.denominator__ = 1;
     }
-    num.Reduce();
+    fract.Reduce();
     return is;
 }
 
-std::ostream &operator<<(std::ostream &out, const Rational &num) {
-    if (num.denominator != 1) {
-        out << num.numerator << "/" << num.denominator;
+std::ostream &operator<<(std::ostream &out, const Rational &fract) {
+    if (num.denominator__ != 1) {
+        out << fract.numerator_ << "/" << fract.denominator__;
     } else {
-        out << num.numerator;
+        out << fract.numerator_;
     }
     return out;
 }
 
-Rational &Rational::operator+=(Rational add) {
-    this->numerator = (add.numerator * this->denominator + this->numerator * add.denominator) /
-                      std::gcd(this->denominator, add.denominator);
-    this->denominator = Lcm(this->denominator, add.denominator);
+Rational &Rational::operator+=(Rational other) {
+    this->numerator_ = (other.numerator_ * this->denominator__ + this->numerator_ * other.denominator__) /
+                      std::gcd(this->denominator__, other.denominator__);
+    this->denominator__ = Lcm(this->denominator__, other.denominator__);
     this->Reduce();
     return *this;
 }
 
-Rational &Rational::operator-=(Rational add) {
-    add.numerator *= -1;
-    *this += add;
+Rational &Rational::operator-=(Rational other) {
+    add.numerator_ *= -1;
+    *this += other;
     return *this;
 }
 
-Rational &Rational::operator*=(Rational add) {
-    this->numerator = this->numerator * add.numerator;
-    this->denominator = this->denominator * add.denominator;
+Rational &Rational::operator*=(Rational other) {
+    this->numerator_ = this->numerator_ * other.numerator_;
+    this->denominator__ = this->denominator__ * other.denominator__;
     this->Reduce();
     return *this;
 }
 
-Rational &Rational::operator/=(Rational add) {
-    std::swap(add.numerator, add.denominator);
-    *this *= add;
+Rational &Rational::operator/=(Rational other) {
+    std::swap(other.numerator_, other.denominator__);
+    *this *= other;
     return *this;
 }
 
@@ -122,43 +122,43 @@ Rational operator/(Rational first, Rational second) {
     return first;
 }
 
-Rational operator+(Rational num) {
-    return num;
+Rational operator+(Rational fract) {
+    return fract;
 }
 
-Rational operator-(Rational num) {
-    num *= -1;
-    return num;
+Rational operator-(Rational fract) {
+    fract *= -1;
+    return fract;
 }
 
-Rational &operator++(Rational &num) {
-    num += 1;
-    return num;
+Rational &operator++(Rational &fract) {
+    fract += 1;
+    return fract;
 }
 
-Rational &operator--(Rational &num) {
-    num -= 1;
-    return num;
+Rational &operator--(Rational &fract) {
+    fract -= 1;
+    return fract;
 }
-Rational operator++(Rational &num, int) {
-    Rational copy = num;
-    num += 1;
+Rational operator++(Rational &fract, int) {
+    Rational copy = fract;
+    fract += 1;
     return copy;
 }
 
-Rational operator--(Rational &num, int) {
-    Rational copy = num;
-    num -= 1;
+Rational operator--(Rational &fract, int) {
+    Rational copy = fract;
+    fract -= 1;
     return copy;
 }
 
 bool operator>(const Rational &first, const Rational &second) {
     bool ans = false;
-    if (first.numerator * second.numerator < 0) {
-        if (first.numerator > 0) {
+    if (first.numerator_ * second.numerator_ < 0) {
+        if (first.numerator_ > 0) {
             ans = true;
         }
-    } else if (first.numerator * second.denominator > second.numerator * first.denominator) {
+    } else if (first.numerator_ * second.denominator__ > second.numerator_ * first.denominator__) {
         ans = true;
     }
     return ans;
