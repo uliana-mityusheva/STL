@@ -76,7 +76,7 @@ T MatrixArray<T, N, M>::operator()(size_t string, size_t column) const {
     return matrix[string][column];
 }
 
-template<class T, size_t N, size_t M>
+template <class T, size_t N, size_t M>
 T &MatrixArray<T, N, M>::operator()(size_t string, size_t column) {
     return matrix[string][column];
 }
