@@ -129,6 +129,7 @@ bool operator<(const Array<T1, N> &first, const Array<T2, N> &second) {
             return true;
         }
     }
+    return false;
 }
 
 template <class T1, class T2, size_t N>
