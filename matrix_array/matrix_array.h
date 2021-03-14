@@ -21,18 +21,14 @@ struct MatrixArray {
 public:
     T matrix[N][M];
 
-    MatrixArray<T, 1, 1> &OneElementMatrix (const T &num);
     size_t RowsNumber() const;
     size_t ColumnsNumber() const;
-    T &At (size_t string, size_t column);
-    T At (size_t string, size_t column) const;
+    T &At(size_t string, size_t column);
+    T At(size_t string, size_t column) const;
     MatrixArray<T, M, N> GetTransposed() const;
 
     T operator()(size_t string, size_t column) const;
     T &operator()(size_t string, size_t column);
-
-    //friend std::istream& operator>>(std::istream& is, MatrixArray &num);
-    //friend std::ostream& operator<<(std::ostream& out, MatrixArray &num);
 
     MatrixArray &operator*=(const int &num);
     MatrixArray &operator/=(const int &num);
@@ -48,16 +44,16 @@ size_t MatrixArray<T, N, M>::ColumnsNumber() const {
     return M;
 }
 
-template<class T, size_t N, size_t M>
-T &MatrixArray<T, N, M>::At (size_t string, size_t column) {
+template <class T, size_t N, size_t M>
+T &MatrixArray<T, N, M>::At(size_t string, size_t column) {
     if (string < N && column < M) {
         return matrix[string][column];
     }
     throw MatrixArrayOutOfRange{};
 }
 
-template<class T, size_t N, size_t M>
-T MatrixArray<T, N, M>::At (size_t string, size_t column) const {
+template <class T, size_t N, size_t M>
+T MatrixArray<T, N, M>::At(size_t string, size_t column) const {
     if (string < N && column < M) {
         return matrix[string][column];
     }
@@ -75,7 +71,7 @@ MatrixArray<T, M, N> MatrixArray<T, N, M>::GetTransposed() const {
     return new_matrix;
 }
 
-template<class T, size_t N, size_t M>
+template <class T, size_t N, size_t M>
 T MatrixArray<T, N, M>::operator()(size_t string, size_t column) const {
     return matrix[string][column];
 }
@@ -87,7 +83,7 @@ T &MatrixArray<T, N, M>::operator()(size_t string, size_t column) {
 
 template <class T, size_t N, size_t M>
 std::istream &operator>>(std::istream &is, MatrixArray<T, N, M> &matrix) {
-    for(size_t i = 0; i < N; ++i) {
+    for (size_t i = 0; i < N; ++i) {
         for (size_t j = 0; j < M; ++j) {
             is >> matrix(i, j);
         }
@@ -95,10 +91,10 @@ std::istream &operator>>(std::istream &is, MatrixArray<T, N, M> &matrix) {
     return is;
 }
 
-template<class T, size_t N, size_t M>
+template <class T, size_t N, size_t M>
 std::ostream &operator<<(std::ostream &os, const MatrixArray<T, N, M> &matrix) {
-    for(size_t i = 0; i < N; ++i) {
-        for(size_t j = 0; j < M - 1; ++j) {
+    for (size_t i = 0; i < N; ++i) {
+        for (size_t j = 0; j < M - 1; ++j) {
             os << matrix(i, j) << " ";
         }
         os << matrix(i, M - 1) << "\n";
@@ -127,19 +123,19 @@ MatrixArray<T, N, M> &operator-=(MatrixArray<T, N, M> &first, const MatrixArray<
 }
 
 template <class T, size_t N, size_t M>
-MatrixArray<T, N, M>operator+(const MatrixArray<T, N, M> &first, const MatrixArray<T, N, M> &second) {
+MatrixArray<T, N, M> operator+(const MatrixArray<T, N, M> &first, const MatrixArray<T, N, M> &second) {
     MatrixArray<T, N, M> copy = first;
     return copy += second;
 }
 
 template <class T, size_t N, size_t M>
-MatrixArray<T, N, M>operator-(const MatrixArray<T, N, M> &first, const MatrixArray<T, N, M> &second) {
+MatrixArray<T, N, M> operator-(const MatrixArray<T, N, M> &first, const MatrixArray<T, N, M> &second) {
     MatrixArray<T, N, M> copy = first;
     return copy -= second;
 }
 
 template <class T, size_t N, size_t M, size_t P>
-MatrixArray<T, N, P>operator*(const MatrixArray<T, N, M> &first, const MatrixArray<T, M, P> &second) {
+MatrixArray<T, N, P> operator*(const MatrixArray<T, N, M> &first, const MatrixArray<T, M, P> &second) {
     MatrixArray<T, N, P> ans;
 
     for (size_t i = 0; i < N; ++i) {
@@ -165,7 +161,7 @@ MatrixArray<T, M, N> &operator*=(MatrixArray<T, M, N> &first, const MatrixArray<
 }
 
 template <class T, size_t N, size_t M>
-MatrixArray<T, N, M> &MatrixArray<T, N, M>::operator*=(const int &num) { //проверить
+MatrixArray<T, N, M> &MatrixArray<T, N, M>::operator*=(const int &num) {
     for (size_t i = 0; i < N; ++i) {
         for (size_t j = 0; j < M; ++j) {
             (*this)(i, j) *= num;
@@ -175,7 +171,7 @@ MatrixArray<T, N, M> &MatrixArray<T, N, M>::operator*=(const int &num) { //пр�
 }
 
 template <class T, size_t N, size_t M>
-MatrixArray<T, N, M> &MatrixArray<T, N, M>::operator/=(const int &num) { //проверить
+MatrixArray<T, N, M> &MatrixArray<T, N, M>::operator/=(const int &num) {
     for (size_t i = 0; i < N; ++i) {
         for (size_t j = 0; j < M; ++j) {
             (*this)(i, j) /= num;
@@ -185,13 +181,13 @@ MatrixArray<T, N, M> &MatrixArray<T, N, M>::operator/=(const int &num) { //пр�
 }
 
 template <class T, size_t N, size_t M>
-MatrixArray<T, N, M> operator*(const MatrixArray<T, N, M> &matrix, const int &num) { // матрица на число
+MatrixArray<T, N, M> operator*(const MatrixArray<T, N, M> &matrix, const int &num) {
     MatrixArray<T, N, M> copy = matrix;
     return copy *= num;
 }
 
 template <class T, size_t N, size_t M>
-MatrixArray<T, N, M> operator*(const int &num, const MatrixArray<T, N, M> &matrix) { // число на матрицу
+MatrixArray<T, N, M> operator*(const int &num, const MatrixArray<T, N, M> &matrix) {
     return matrix * num;
 }
 
