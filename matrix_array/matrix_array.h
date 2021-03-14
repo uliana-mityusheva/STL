@@ -1,7 +1,7 @@
 #ifndef MATRIX_ARRAY_MATRIX_ARRAY_H
 #define MATRIX_ARRAY_MATRIX_ARRAY_H
 
-#include "constants.h"
+#include <util/constants.h>
 #include <iostream>
 
 class MatrixArrayIsDegenerateError : public std::runtime_error {
