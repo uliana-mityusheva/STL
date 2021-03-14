@@ -28,8 +28,8 @@ public:
     void Fill(const T &value);
     void Swap(Array<T, N> &other);
 
-    T &operator[](size_t i);
-    const T &operator[](size_t i) const;
+    T &operator[](size_t ind);
+    const T &operator[](size_t ind) const;
 };
 
 template <class T, size_t N>
@@ -83,11 +83,7 @@ T *Array<T, N>::Data() {
 
 template <class T, size_t N>
 bool Array<T, N>::Empty() const {
-    bool ans = false;
-    if (N == 0) {
-        ans = true;
-    }
-    return ans;
+    return N == 0;
 }
 
 template <class T, size_t N>
@@ -106,34 +102,33 @@ void swap(T &num1, T &num2) {  // NOLINT
 
 template <class T, size_t N>
 void Array<T, N>::Swap(Array<T, N> &other) {
-    for (size_t i = 0; i < N; ++i) {
-        swap(arr[i], other[i]);
+    for (size_t i = 0; i < N; i++) {
+        T temp = arr[i];
+        arr[i] = other[i];
+        other[i] = temp;
     }
 }
 
 template <class T, size_t N>
-T &Array<T, N>::operator[](size_t i) {
-    return arr[i];
+T &Array<T, N>::operator[](size_t ind) {
+    return arr[ind];
 }
 
 template <class T, size_t N>
-const T &Array<T, N>::operator[](size_t i) const {
-    return arr[i];
+const T &Array<T, N>::operator[](size_t ind) const {
+    return arr[ind];
 }
 
 template <class T1, class T2, size_t N>
 bool operator<(const Array<T1, N> &first, const Array<T2, N> &second) {
-    bool ans = false;
     for (size_t i = 0; i < N; ++i) {
         if (second[i] < first[i]) {
-            break;
+            return false;
         }
         if (first[i] < second[i]) {
-            ans = true;
-            break;
+            return true;
         }
     }
-    return ans;
 }
 
 template <class T1, class T2, size_t N>
@@ -161,11 +156,11 @@ bool operator>=(const Array<T1, N> &first, const Array<T2, N> &second) {
     return (first > second || first == second);
 }
 
-namespace std {  // NOLINT
-template <class T, size_t N>
-void Swap(Array<T, N> &first, Array<T, N> &second) {
-    first.Swap(second);
-}
+namespace std {
+    template <class T, size_t N>
+    void swap(Array<T, N> &first, Array<T, N> &second) {  // NOLINT
+        first.Swap(second);
+    }
 }  // namespace std
 
 #endif
