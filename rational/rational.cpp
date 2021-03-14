@@ -153,15 +153,16 @@ Rational operator--(Rational &fract, int) {
 }
 
 bool operator>(const Rational &first, const Rational &second) {
-    bool ans = false;
     if (first.numerator_ * second.numerator_ < 0) {
         if (first.numerator_ > 0) {
-            ans = true;
+            return true;
         }
-    } else if (first.numerator_ * second.denominator__ > second.numerator_ * first.denominator__) {
-        ans = true;
     }
-    return ans;
+
+    if (first.numerator_ * second.denominator__ > second.numerator_ * first.denominator__) {
+        return true;
+    }
+    return false;
 }
 
 bool operator<(const Rational &first, const Rational &second) {
