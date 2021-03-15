@@ -211,4 +211,3 @@ void Page<T, N>::PopFront() {
 }
 
 #endif  // DEQUE_PAGE_PAGE_H
-
