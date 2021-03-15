@@ -6,15 +6,15 @@
 template <class T, size_t N>
 class Page {
 private:
-    T buffer [N];
-    bool back;
-    bool front;
-    size_t size;
+    T buffer_[N];
+    bool back_;
+    bool front_;
+    size_t size_;
+    int status_;
 public:
     Page();
     Page(const Page &other);
 
-    int status = 0;
     T &Front();
     const T &Front() const;
     T &Back();
@@ -41,27 +41,27 @@ public:
 };
 
 template <class T, size_t N>
-Page<T, N>::Page() : back(true), front(true), size(0) {
+Page<T, N>::Page() : back_(true), front_(true), size_(0), status_(0) {
 }
 
 template <class T, size_t N>
-Page<T, N>::Page(const Page &other) : back(other.IsBack()), front(other.IsFront()), size(other.Size()) {
-    status = other.status;
-    for (size_t i = 0; i < size; ++i) {
-        buffer[i] = other.buffer[i];
+Page<T, N>::Page(const Page &other) : back_(other.IsBack()), front_(other.IsFront()), size_(other.Size()) {
+    status_ = other.status_;
+    for (size_t i = 0; i < size_; ++i) {
+        buffer_[i] = other.buffer_[i];
     }
 }
 
 template <class T, size_t N>
 Page<T, N> &Page<T, N>::operator=(const Page<T, N> &other) {
     if (&other != this) {
-        back = other.IsBack();
-        front = other.IsFront();
-        size = other.Size();
-        status = other.status;
+        back_ = other.IsBack();
+        front_ = other.IsFront();
+        size_ = other.Size();
+        status_ = other.status_;
 
-        for (size_t i = 0; i < size; ++i) {
-            buffer[i] = other.buffer[i];
+        for (size_t i = 0; i < size_; ++i) {
+            buffer_[i] = other.buffer_[i];
         }
     }
     return *this;
@@ -69,145 +69,144 @@ Page<T, N> &Page<T, N>::operator=(const Page<T, N> &other) {
 
 template <class T, size_t N>
 void Page<T, N>::Clear() {
-    size = 0;
-    front = back = true;
+    size_ = 0;
+    front_ = back_ = true;
 }
 
 template <class T, size_t N>
 size_t Page<T, N>::Size() const {
-    return size;
+    return size_;
 }
 
 template <class T, size_t N>
 T &Page<T, N>::operator[](size_t ind) {
-    if (front == true) {
-        return buffer[size - ind - 1];
+    if (front_ == true) {
+        return buffer_[size_ - ind - 1];
     }
-    return buffer[ind];
+    return buffer_[ind];
 }
 
 template <class T, size_t N>
 const T &Page<T, N>::operator[](size_t ind) const {
-    if (front == true || status == 1) {
-        return buffer[size - ind - 1];
+    if (front_ == true || status_ == 1) {
+        return buffer_[size_ - ind - 1];
     }
-    return buffer[ind];
+    return buffer_[ind];
 }
 
 template <class T, size_t N>
 T &Page<T, N>::Front() {
-    if (back == true || status == 1) {
-        return buffer[0];
+    if (back_ == true || status_ == 1) {
+        return buffer_[0];
     }
-    if (size == 0) {
-        return buffer[0];
+    if (size_ == 0) {
+        return buffer_[0];
     }
-    return buffer[size - 1];
+    return buffer_[size - 1];
 }
 
 template <class T, size_t N>
 const T &Page<T, N>::Front() const {
-    if (back == true) {
-        return buffer[0];
+    if (back_ == true) {
+        return buffer_[0];
     }
-    if (size == 0) {
-        return buffer[0];
+    if (size_ == 0) {
+        return buffer_[0];
     }
-    return buffer[size - 1];
+    return buffer_[size - 1];
 }
 
 template <class T, size_t N>
 T &Page<T, N>::Back() {
-    if (back == true) {
-        if (size == 0) {
-            return buffer[0];
+    if (back_ == true) {
+        if (size_ == 0) {
+            return buffer_[0];
         }
-        return buffer[size - 1];
+        return buffer_[size_ - 1];
     }
-    return buffer[0];
+    return buffer_[0];
 }
 
 template <class T, size_t N>
 const T &Page<T, N>::Back() const {
-    if (back == true) {
-        if (size == 0) {
-            return buffer[0];
+    if (back_ == true) {
+        if (size_ == 0) {
+            return buffer_[0];
         }
-        return buffer[size - 1];
+        return buffer_[size_ - 1];
     }
-    return buffer[0];
+    return buffer_[0];
 }
 
 template <class T, size_t N>
 bool Page<T, N>::Empty() const {
-    return (size == 0);
+    return (size_ == 0);
 }
 
 template <class T, size_t N>
 bool Page<T, N>::Full() const {
-    return (size == N);
+    return (size_ == N);
 }
 
 template <class T, size_t N>
 bool Page<T, N>::IsFront() const {
-    return front;
+    return front_;
 }
 
 template <class T, size_t N>
 bool Page<T, N>::IsBack() const {
-    return back;
+    return back_;
 }
 
 template <class T, size_t N>
 void Page<T, N>::PushBack(const T &value) {
-    front = false;
-    if (size < N) {
-        buffer[size] = value;
-        ++size;
+    front_ = false;
+    if (size_ < N) {
+        buffer_[size_] = value;
+        ++size_;
     }
-    if (size == N) {
-        back = false;
-        status = 2;
+    if (size_ == N) {
+        back_ = false;
+        status_ = 2;
     }
-
 }
 
 template <class T, size_t N>
 void Page<T, N>::PopBack() {
-    if (size == N) {
-        back = true;
-        status = 0;
+    if (size_ == N) {
+        back_ = true;
+        status_ = 0;
     }
     --size;
-    if (size == 0) {
-        front = back = true;
+    if (size_ == 0) {
+        front_ = back_ = true;
     }
 }
 
 template <class T, size_t N>
 void Page<T, N>::PushFront(const T &value) {
-    back = false;
-    if (size < N) {
-        buffer[size] = value;
-        ++size;
+    back_ = false;
+    if (size_ < N) {
+        buffer_[size_] = value;
+        ++size_;
     }
-    if (size == N) {
-        front = false;
-        status = 1;
+    if (size_ == N) {
+        front_ = false;
+        status_ = 1;
     }
 }
 
 template <class T, size_t N>
 void Page<T, N>::PopFront() {
-    if (size == N) {
-        front = true;
-        status = 0;
+    if (size_ == N) {
+        front_ = true;
+        status_ = 0;
     }
 
     --size;
 
-    if (size == 0) {
-        front = back = true;
+    if (size_ == 0) {
+        front_ = back_ = true;
     }
 }
 
