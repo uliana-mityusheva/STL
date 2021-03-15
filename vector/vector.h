@@ -275,7 +275,7 @@ bool operator<(const Vector<T1> &first, const Vector<T2> &second) {
         return true;
     }
 
-    for (i = 0; i < first.Size() && i < second.Size(); ++i) {
+    for (size_t i = 0; i < first.Size() && i < second.Size(); ++i) {
         if (second[i] < first[i]) {
             return false;
         }
