@@ -203,7 +203,7 @@ void Page<T, N>::PopFront() {
         status_ = 0;
     }
 
-    --size;
+    --size_;
 
     if (size_ == 0) {
         front_ = back_ = true;
