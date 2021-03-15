@@ -271,10 +271,6 @@ Vector<T> &Vector<T>::operator=(const Vector<T> &other) {
 template <class T1, class T2>
 bool operator<(const Vector<T1> &first, const Vector<T2> &second) {
 
-    if (first.Size() < second.Size()) {
-        return true;
-    }
-
     for (size_t i = 0; i < first.Size() && i < second.Size(); ++i) {
         if (second[i] < first[i]) {
             return false;
@@ -283,6 +279,11 @@ bool operator<(const Vector<T1> &first, const Vector<T2> &second) {
             return true;
         }
     }
+
+    if (first.Size() < second.Size()) {
+        return true;
+    }
+
     return false;
 }
 
