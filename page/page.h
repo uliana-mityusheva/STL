@@ -102,7 +102,7 @@ T &Page<T, N>::Front() {
     if (size_ == 0) {
         return buffer_[0];
     }
-    return buffer_[size - 1];
+    return buffer_[size_ - 1];
 }
 
 template <class T, size_t N>
@@ -113,7 +113,7 @@ const T &Page<T, N>::Front() const {
     if (size_ == 0) {
         return buffer_[0];
     }
-    return buffer_[size - 1];
+    return buffer_[size_ - 1];
 }
 
 template <class T, size_t N>
@@ -177,7 +177,7 @@ void Page<T, N>::PopBack() {
         back_ = true;
         status_ = 0;
     }
-    --size;
+    --size_;
     if (size_ == 0) {
         front_ = back_ = true;
     }
