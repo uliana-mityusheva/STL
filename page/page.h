@@ -81,7 +81,7 @@ size_t Page<T, N>::Size() const {
 
 template <class T, size_t N>
 T &Page<T, N>::operator[](size_t ind) {
-    if (front_ == true) {
+    if (front_) {
         return buffer_[size_ - ind - 1];
     }
     return buffer_[ind];
@@ -89,7 +89,7 @@ T &Page<T, N>::operator[](size_t ind) {
 
 template <class T, size_t N>
 const T &Page<T, N>::operator[](size_t ind) const {
-    if (front_ == true || status_ == 1) {
+    if (front_ || status_ == 1) {
         return buffer_[size_ - ind - 1];
     }
     return buffer_[ind];
@@ -97,7 +97,7 @@ const T &Page<T, N>::operator[](size_t ind) const {
 
 template <class T, size_t N>
 T &Page<T, N>::Front() {
-    if (back_ == true || status_ == 1) {
+    if (back_ || status_ == 1) {
         return buffer_[0];
     }
     if (size_ == 0) {
@@ -108,7 +108,7 @@ T &Page<T, N>::Front() {
 
 template <class T, size_t N>
 const T &Page<T, N>::Front() const {
-    if (back_ == true) {
+    if (back_) {
         return buffer_[0];
     }
     if (size_ == 0) {
@@ -119,7 +119,7 @@ const T &Page<T, N>::Front() const {
 
 template <class T, size_t N>
 T &Page<T, N>::Back() {
-    if (back_ == true) {
+    if (back_) {
         if (size_ == 0) {
             return buffer_[0];
         }
@@ -130,7 +130,7 @@ T &Page<T, N>::Back() {
 
 template <class T, size_t N>
 const T &Page<T, N>::Back() const {
-    if (back_ == true) {
+    if (back_) {
         if (size_ == 0) {
             return buffer_[0];
         }
