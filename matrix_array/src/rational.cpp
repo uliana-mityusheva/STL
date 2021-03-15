@@ -67,7 +67,7 @@ std::istream &operator>>(std::istream &is, Rational &fract) {
 }
 
 std::ostream &operator<<(std::ostream &out, const Rational &fract) {
-    if (num.denominator_ != 1) {
+    if (fract.denominator_ != 1) {
         out << fract.numerator_ << "/" << fract.denominator_;
     } else {
         out << fract.numerator_;
@@ -77,14 +77,14 @@ std::ostream &operator<<(std::ostream &out, const Rational &fract) {
 
 Rational &Rational::operator+=(Rational other) {
     this->numerator_ = (other.numerator_ * this->denominator_ + this->numerator_ * other.denominator_) /
-                      std::gcd(this->denominator_, other.denominator_);
+                       std::gcd(this->denominator_, other.denominator_);
     this->denominator_ = Lcm(this->denominator_, other.denominator_);
     this->Reduce();
     return *this;
 }
 
 Rational &Rational::operator-=(Rational other) {
-    add.numerator_ *= -1;
+    other.numerator_ *= -1;
     *this += other;
     return *this;
 }
