@@ -77,7 +77,7 @@ std::ostream &operator<<(std::ostream &out, const Rational &fract) {
 
 Rational &Rational::operator+=(Rational other) {
     this->numerator_ = (other.numerator_ * this->denominator_ + this->numerator_ * other.denominator_) /
-                      std::gcd(this->denominator_, other.denominator_);
+                       std::gcd(this->denominator_, other.denominator_);
     this->denominator_ = Lcm(this->denominator_, other.denominator_);
     this->Reduce();
     return *this;
