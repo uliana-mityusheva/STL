@@ -11,6 +11,7 @@ private:
     bool front_;
     size_t size_;
     int status_;
+    
 public:
     Page();
     Page(const Page &other);
