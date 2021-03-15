@@ -27,25 +27,25 @@ Rational::Rational(int num) : numerator_(num), denominator_(1) {
 }
 
 Rational::Rational(int num, int den) {
-    numerator_ = x;
-    denominator_ = y;
+    numerator_ = num;
+    denominator_ = den;
     Reduce();
 }
 
-int Rational::Getnumerator_() const {
+int Rational::GetNumerator() const {
     return numerator_;
 }
 
-int Rational::Getdenominator_() const {
+int Rational::GetDenominator() const {
     return denominator_;
 }
 
-void Rational::Setnumerator_(int fract) {
+void Rational::SetNumerator(int fract) {
     numerator_ = fract;
     Reduce();
 }
 
-void Rational::Setdenominator_(int fract) {
+void Rational::SetDenominator(int fract) {
     denominator_ = fract;
     Reduce();
 }
@@ -58,17 +58,17 @@ std::istream &operator>>(std::istream &is, Rational &fract) {
     fract.numerator_ = strtol(str, &end_ptr, 10);
     if (*end_ptr != 0) {
         ++end_ptr;
-        fract.denominator__ = strtol(end_ptr, &end_ptr, 10);
+        fract.denominator_ = strtol(end_ptr, &end_ptr, 10);
     } else {
-        fract.denominator__ = 1;
+        fract.denominator_ = 1;
     }
     fract.Reduce();
     return is;
 }
 
 std::ostream &operator<<(std::ostream &out, const Rational &fract) {
-    if (num.denominator__ != 1) {
-        out << fract.numerator_ << "/" << fract.denominator__;
+    if (num.denominator_ != 1) {
+        out << fract.numerator_ << "/" << fract.denominator_;
     } else {
         out << fract.numerator_;
     }
@@ -76,9 +76,9 @@ std::ostream &operator<<(std::ostream &out, const Rational &fract) {
 }
 
 Rational &Rational::operator+=(Rational other) {
-    this->numerator_ = (other.numerator_ * this->denominator__ + this->numerator_ * other.denominator__) /
-                      std::gcd(this->denominator__, other.denominator__);
-    this->denominator__ = Lcm(this->denominator__, other.denominator__);
+    this->numerator_ = (other.numerator_ * this->denominator_ + this->numerator_ * other.denominator_) /
+                      std::gcd(this->denominator_, other.denominator_);
+    this->denominator_ = Lcm(this->denominator_, other.denominator_);
     this->Reduce();
     return *this;
 }
@@ -91,13 +91,13 @@ Rational &Rational::operator-=(Rational other) {
 
 Rational &Rational::operator*=(Rational other) {
     this->numerator_ = this->numerator_ * other.numerator_;
-    this->denominator__ = this->denominator__ * other.denominator__;
+    this->denominator_ = this->denominator_ * other.denominator_;
     this->Reduce();
     return *this;
 }
 
 Rational &Rational::operator/=(Rational other) {
-    std::swap(other.numerator_, other.denominator__);
+    std::swap(other.numerator_, other.denominator_);
     *this *= other;
     return *this;
 }
@@ -159,7 +159,7 @@ bool operator>(const Rational &first, const Rational &second) {
         }
     }
 
-    if (first.numerator_ * second.denominator__ > second.numerator_ * first.denominator__) {
+    if (first.numerator_ * second.denominator_ > second.numerator_ * first.denominator_) {
         return true;
     }
     return false;
