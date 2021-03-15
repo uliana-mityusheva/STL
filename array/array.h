@@ -158,10 +158,10 @@ bool operator>=(const Array<T1, N> &first, const Array<T2, N> &second) {
 }
 
 namespace std {
-    template <class T, size_t N>
-    void swap(Array<T, N> &first, Array<T, N> &second) {  // NOLINT
-        first.Swap(second);
-    }
+template <class T, size_t N>
+void swap(Array<T, N> &first, Array<T, N> &second) {  // NOLINT
+    first.Swap(second);
+}
 }  // namespace std
 
 #endif
