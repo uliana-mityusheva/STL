@@ -2,6 +2,7 @@
 #define ANY_ANY_H
 
 #include <iostream>
+#include <memory>
 
 class BadAnyCast : public std::bad_cast {};
 
@@ -120,7 +121,7 @@ inline void Any::Swap(Any &other) {
 template <class T>
 T AnyCast(const Any &value) {
     if (dynamic_cast<Derived<T> *>(value.ptr_.get())) {
-        auto *ptr = dynamic_cast<Derived<T> *>(value.ptr_.get());
+        auto ptr = dynamic_cast<Derived<T> *>(value.ptr_.get());
         return ptr->Get();
     }
     throw BadAnyCast{};
