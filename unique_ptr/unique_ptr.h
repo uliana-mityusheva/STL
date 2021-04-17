@@ -13,10 +13,11 @@ public:
     explicit UniquePtr(T *ptr);
     UniquePtr(const UniquePtr<T> &other) = delete;
     UniquePtr(UniquePtr<T> &&other) noexcept;
-    ~UniquePtr();
 
     UniquePtr &operator=(const UniquePtr<T> &other) = delete;
     UniquePtr &operator=(UniquePtr<T> &&other) noexcept;
+
+    ~UniquePtr();
 
     T *Release();
     void Reset(T *ptr = nullptr) noexcept;
