@@ -6,83 +6,59 @@
 #include <vector>
 
 struct PlusToken {
-    bool operator==(const PlusToken &) const {
-        return true;
-    }
+    bool operator==(const PlusToken &) const;
 };
 
 struct MinusToken {
-    bool operator==(const MinusToken &) const {
-        return true;
-    }
+    bool operator==(const MinusToken &) const;
 };
 
 struct MultiplyToken {
-    bool operator==(const MultiplyToken &) const {
-        return true;
-    }
+    bool operator==(const MultiplyToken &) const;
 };
 
 struct DivideToken {
-    bool operator==(const DivideToken &) const {
-        return true;
-    }
+    bool operator==(const DivideToken &) const;
 };
 
 struct ResidualToken {
-    bool operator==(const ResidualToken &) const {
-        return true;
-    }
+    bool operator==(const ResidualToken &) const;
 };
 
 struct OpeningBracketToken {
-    bool operator==(const OpeningBracketToken &) const {
-        return true;
-    }
+    bool operator==(const OpeningBracketToken &) const;
 };
 
 struct ClosingBracketToken {
-    bool operator==(const ClosingBracketToken &) const {
-        return true;
-    }
+    bool operator==(const ClosingBracketToken &) const;
 };
 
 struct SqrToken {
-    bool operator==(const SqrToken &) const {
-        return true;
-    }
+    bool operator==(const SqrToken &) const;
 };
 
 struct MaxToken {
-    bool operator==(const MaxToken &) const {
-        return true;
-    }
+    bool operator==(const MaxToken &) const;
 };
 
 struct MinToken {
-    bool operator==(const MinToken &) const {
-        return true;
-    }
+    bool operator==(const MinToken &) const;
 };
 
 struct AbsToken {
-    bool operator==(const AbsToken &) const {
-        return true;
-    }
+    bool operator==(const AbsToken &) const;
 };
 
 struct NumberToken {
     int value;
-    bool operator==(const NumberToken &other) const {
-        return (other.value == value);
-    }
+
+    bool operator==(const NumberToken &other) const;
 };
 
 struct UnknownToken {
     std::string value;
-    bool operator==(const UnknownToken &) const {
-        return true;
-    }
+
+    bool operator==(const UnknownToken &) const;
 };
 
 using Token = std::variant<PlusToken, MinusToken, MultiplyToken, DivideToken, ResidualToken, OpeningBracketToken,
