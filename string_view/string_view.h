@@ -2,8 +2,9 @@
 #define STRING_VIEW_STRING_VIEW_H
 
 #include <iostream>
-#include <stdexcept>
 #include <iterator>
+#include <stdexcept>
+#include <cstring>
 
 class StringView {
 private:
@@ -131,38 +132,38 @@ inline StringView StringView::Substr(size_t pos, size_t count) const {
     throw std::out_of_range("");
 }
 
-inline const char *StringView::begin() {
+inline const char *StringView::begin() {  // NOLINT
     return str_;
 }
 
-inline const char *StringView::cbegin() {
+inline const char *StringView::cbegin() {  // NOLINT
     return str_;
 }
 
-inline const char *StringView::end() {
+inline const char *StringView::end() {  // NOLINT
     return str_ + size_;
 }
 
-inline const char *StringView::cend() {
+inline const char *StringView::cend() {  // NOLINT
     return str_ + size_;
 }
 
-inline std::reverse_iterator<const char *> StringView::rbegin() {
+inline std::reverse_iterator<const char *> StringView::rbegin() {  // NOLINT
     std::reverse_iterator<Iterator> it(end());
     return it;
 }
 
-inline std::reverse_iterator<const char *> StringView::rend() {
+inline std::reverse_iterator<const char *> StringView::rend() {  // NOLINT
     std::reverse_iterator<Iterator> it(begin());
     return it;
 }
 
-inline std::reverse_iterator<const char *> StringView::crbegin() {
+inline std::reverse_iterator<const char *> StringView::crbegin() {  // NOLINT
     std::reverse_iterator<Iterator> it(end());
     return it;
 }
 
-inline std::reverse_iterator<const char *> StringView::crend() {
+inline std::reverse_iterator<const char *> StringView::crend() {  // NOLINT
     std::reverse_iterator<Iterator> it(begin());
     return it;
 }
